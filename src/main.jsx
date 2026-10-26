@@ -413,7 +413,11 @@ function App() {
           <div className="eyebrow"><span className="status-light" /> A LIVING ATLAS OF EXPERIMENTS <span className="year">/ 2026</span></div>
           <h1>Curiosity is<br />a form of <em>engineering.</em></h1>
           <p>I'm <strong>Priyanshu Rai</strong> — a computer science student exploring where software, cloud infrastructure, and AI meet. This is a map of things I'm learning to make, not just a list of things I've done.</p>
-          <div className="hero-actions"><a className="btn-primary" href="#projects">Explore the work <ArrowUpRight size={16} /></a><a className="btn-ghost" href="#universe">Touch the universe <Orbit size={15} /></a></div>
+          <div className="hero-actions">
+            <a className="btn-primary" href="#projects">Explore the work <ArrowUpRight size={16} /></a>
+            <a className="btn-ghost" href="#universe">Touch the universe <Orbit size={15} /></a>
+            <a className="btn-ghost" href="/resume.pdf" download="Priyanshu_Rai_Resume.pdf">Download resume <ArrowDownRight size={16} /></a>
+          </div>
           <div className="hero-stats"><span><i /> CS / CLOUD COMPUTING</span><span>BASED IN INDIA</span><span>EXPECTED GRAD. 2027</span></div>
         </div>
         <div className="universe-column">
@@ -458,7 +462,14 @@ function App() {
         <div className="timeline"><div><span>EDUCATION</span><section><h3>B.Sc. Computer Science — Cloud Computing</h3><p>MIT World Peace University, Pune · Expected 2027</p></section></div><div><span>EXPERIENCE</span><section><h3>Software development internship</h3><p>Acceltree Software Pvt. Ltd. · Software Development Intern, AI & Backend Systems · Jul–Sep 2026.</p></section></div><div><span>OCT 2024 – FEB 2026</span><section><h3>Web & Communications Intern</h3><p>Confederation of Indian Private Universities (CIPU) · Website content, weekly newsletters, and structured records using Excel and Word.</p></section></div><div><span>ACHIEVEMENT · 2025</span><section><h3>Best Startup Award — Pune Startup Expo</h3><p>First place for Zuno, an AI career-guidance platform; selected from 1,000+ entries among 30+ finalist teams, as stated in my resume.</p></section></div></div>
       </section>
 
-      <section className="contact-section section-pad" id="contact"><div className="contact-panel"><div className="section-id">05 / OPEN CHANNEL</div><h2>Have a good problem?<br /><em>Let's build.</em></h2><p>I'm interested in thoughtful projects, internships, and conversations with people who enjoy turning ideas into working systems.</p><div className="contact-actions"><a className="btn-primary" href={`mailto:${contact.email}`}><Mail size={15} /> Email me</a><a className="btn-ghost" href={`tel:${contact.phone}`}><ExternalLink size={15} /> +91 98233 69865</a><a className="btn-ghost" href={contact.github} target="_blank" rel="noreferrer"><Code2 size={15} /> GitHub profile <ArrowUpRight size={14} /></a><a className="btn-ghost" href={contact.linkedin} target="_blank" rel="noreferrer"><ExternalLink size={15} /> LinkedIn <ArrowUpRight size={14} /></a></div><div className="contact-direct"><span>DIRECT EMAIL</span><a href={`mailto:${contact.email}`}>{contact.email}</a><span className="contact-separator">/</span><span>PHONE</span><a href={`tel:${contact.phone}`}>+91 98233 69865</a></div></div></section>
+      <section className="contact-section section-pad" id="contact"><div className="contact-panel"><div className="section-id">05 / OPEN CHANNEL</div><h2>Have a good problem?<br /><em>Let's build.</em></h2><p>I'm interested in thoughtful projects, internships, and conversations with people who enjoy turning ideas into working systems.</p><div className="contact-actions">
+        <a className="btn-primary" href={`mailto:${contact.email}`}><Mail size={15} /> Email me</a>
+        <a className="btn-ghost" href={`tel:${contact.phone}`}><ExternalLink size={15} /> +91 98233 69865</a>
+        <a className="btn-ghost" href={contact.github} target="_blank" rel="noreferrer"><Code2 size={15} /> GitHub profile <ArrowUpRight size={14} /></a>
+        <a className="btn-ghost" href={contact.linkedin} target="_blank" rel="noreferrer"><ExternalLink size={15} /> LinkedIn <ArrowUpRight size={14} /></a>
+        <a className="btn-ghost" href="/resume.pdf" download="Priyanshu_Rai_Resume.pdf"><ArrowDownRight size={15} /> Download resume</a>
+      </div>
+        <div className="contact-direct"><span>DIRECT EMAIL</span><a href={`mailto:${contact.email}`}>{contact.email}</a></div></div></section>
     </main>
     <footer><span>© {new Date().getFullYear()} PRIYANSHU RAI / ATLAS OF MAKING</span><a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noreferrer">PLANETARY TEXTURES: SOLAR SYSTEM SCOPE · CC BY 4.0</a><a href={contact.github} target="_blank" rel="noreferrer">GITHUB ↗</a><a href="#home">BACK TO ORBIT ↑</a></footer>
     {activeProject && <ProjectWorld project={activeProject} onClose={() => setSelected(null)} />}
