@@ -62,10 +62,16 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 sh '''
+                    echo "Refreshing Jenkins Kubernetes token..."
+                    sudo /usr/local/sbin/refresh-jenkins-kube-token
+
+                    echo "Updating Kubernetes Deployment..."
                     kubectl set image deployment/atlas-portfolio \
                       atlas-portfolio="$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-                    kubectl rollout status deployment/atlas-portfolio --timeout=180s
+                    echo "Waiting for rollout..."
+                    kubectl rollout status deployment/atlas-portfolio \
+                      --timeout=180s
                 '''
             }
         }
