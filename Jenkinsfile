@@ -8,6 +8,7 @@ pipeline {
         ECR_REPOSITORY = 'atlas-portfolio'
         IMAGE_TAG = "${BUILD_NUMBER}"
         ECR_REGISTRY = '669003565896.dkr.ecr.ap-south-1.amazonaws.com'
+        KUBECONFIG = '/var/lib/jenkins/.kube/config'
     }
 
     stages {
@@ -53,8 +54,18 @@ pipeline {
                 sh '''
                     docker tag atlas-portfolio:${BUILD_NUMBER} \
                       "$ECR_REGISTRY/$ECR_REPOSITORY:${BUILD_NUMBER}"
-
                     docker push "$ECR_REGISTRY/$ECR_REPOSITORY:${BUILD_NUMBER}"
+                '''
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh '''
+                    kubectl set image deployment/atlas-portfolio \
+                      atlas-portfolio="$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+                    kubectl rollout status deployment/atlas-portfolio --timeout=180s
                 '''
             }
         }
@@ -62,7 +73,7 @@ pipeline {
 
     post {
         success {
-            echo 'Portfolio built and Docker image pushed to Amazon ECR.'
+            echo 'Portfolio built, pushed to ECR, and deployed to Kubernetes.'
         }
         failure {
             echo 'Pipeline failed. Check Console Output.'
