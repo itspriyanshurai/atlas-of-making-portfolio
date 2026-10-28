@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -12,9 +13,10 @@ pipeline {
 
         stage('Verify Project Files') {
             steps {
-                powershell 'Get-ChildItem'
-                powershell 'if (!(Test-Path package.json)) { throw "package.json not found" }'
-                powershell 'if (!(Test-Path Dockerfile)) { throw "Dockerfile not found" }'
+                sh 'pwd'
+                sh 'ls -la'
+                sh 'test -f package.json'
+                sh 'test -f Dockerfile'
             }
         }
     }
